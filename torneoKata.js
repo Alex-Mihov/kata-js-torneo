@@ -47,6 +47,17 @@ const training = completeObj.map((f) => {
 })
 
 // Stampa la lista dei combattenti dopo l'allenamento
-console.log(training);
+// console.log(training);
+
+// * Fase 3 -  🎯 Qualificazione: escludiamo dal torneo chi, dopo l'allenamento non è riuscito a raggiungere una potenza di almeno 2000.
+
+const trainedFighters = training.filter(f => f.power > 2000)
+
+console.log(trainedFighters);
 
 
+// * Fase 4 - ⚔️ Combattimento:** i combattimenti si svolgeranno tra un partecipante e il successivo dell'elenco, assicurandosi che ognuno combatta una sola volta.
+
+// * In ogni scontro vincerà il combattente con la potenza più alta.In caso di parità vincerà chi "gioca in casa", ossia chi viene prima nell'elenco.
+
+// * ⚠️ Bisogna assicurarsi che l'elenco contenga un numero pari di combattenti, altrimenti l'ultimo non avrebbe un avversario.Potrebbe essere necessario aggiungere un combattente "Robot" con potenza "4000" all'ultimo minuto.

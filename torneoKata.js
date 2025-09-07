@@ -28,5 +28,25 @@ function randomWeapon(availableWeapons) {
 }
 
 // Stampa il risultato
-console.log(randomWeapon(weapons));
+// console.log(randomWeapon(weapons));
+
+// * Fase 2 - 💪 Allenamento: ogni combattente si sottoporrà ad un allenamento che incrementerà(o forse no) la sua potenza, moltiplicandola per un numero casuale tra 1 e 100.
+
+const completeObj = randomWeapon(weapons);
+// console.log(completeObj);
+
+// Applica la fase di allenamento a ciascun combattente
+const training = completeObj.map((f) => {
+
+    // Genera un numero casuale tra 1 e 100 (moltiplicatore dell'allenamento)
+    const randomMultiplier = Math.floor(Math.random() * 100) + 1;
+
+    // Restituisci un nuovo oggetto combattente con la potenza aggiornata
+    // La potenza originale del combattente viene moltiplicata per il moltiplicatore casuale
+    return { ...f, power: f.power * randomMultiplier }
+})
+
+// Stampa la lista dei combattenti dopo l'allenamento
+console.log(training);
+
 

@@ -51,13 +51,46 @@ const training = completeObj.map((f) => {
 
 // * Fase 3 -  🎯 Qualificazione: escludiamo dal torneo chi, dopo l'allenamento non è riuscito a raggiungere una potenza di almeno 2000.
 
-const trainedFighters = training.filter(f => f.power > 2000)
+const qualifications = training.filter(f => f.power > 2000)
 
-console.log(trainedFighters);
+console.log(qualifications);
 
 
-// * Fase 4 - ⚔️ Combattimento:** i combattimenti si svolgeranno tra un partecipante e il successivo dell'elenco, assicurandosi che ognuno combatta una sola volta.
+// **Fase 4 - ⚔️ Combattimento:** i combattimenti si svolgeranno tra un partecipante e il successivo dell'elenco, assicurandosi che ognuno combatta una sola volta.
 
-// * In ogni scontro vincerà il combattente con la potenza più alta.In caso di parità vincerà chi "gioca in casa", ossia chi viene prima nell'elenco.
+// *In ogni scontro vincerà il combattente con la potenza più alta.In caso di parità vincerà chi "gioca in casa", ossia chi viene prima nell'elenco. 
 
-// * ⚠️ Bisogna assicurarsi che l'elenco contenga un numero pari di combattenti, altrimenti l'ultimo non avrebbe un avversario.Potrebbe essere necessario aggiungere un combattente "Robot" con potenza "4000" all'ultimo minuto.
+// *⚠️ Bisogna assicurarsi che l'elenco contenga un numero pari di combattenti, altrimenti l'ultimo non avrebbe un avversario.Potrebbe essere necessario aggiungere un combattente "Robot" con potenza "4000" all'ultimo minuto.
+
+// Se il numero di qualificati è dispari, aggiungi il Robot
+let fightersForBattle = [...qualifications];
+if (fightersForBattle.length % 2 !== 0) {
+    fightersForBattle.push({
+        name: "Robot",
+        power: 4000,
+        weapon: "Laser",
+        weaponPower: 4000
+    });
+}
+
+// Array per salvare i vincitori dei duelli
+const winners = [];
+
+// Cicla a passi di 2 per formare le coppie e determinare il vincitore
+for (let i = 0; i < fightersForBattle.length; i += 2) {
+    const fighter1 = fightersForBattle[i];
+    const fighter2 = fightersForBattle[i + 1];
+
+    // Confronta la potenza
+    if (fighter1.power > fighter2.power) {
+        winners.push(fighter1);
+    } else if (fighter2.power > fighter1.power) {
+        winners.push(fighter2);
+    } else {
+        // In caso di parità vince chi viene prima (fighter1)
+        winners.push(fighter1);
+    }
+}
+
+// Stampa i vincitori dei duelli
+console.log("Vincitori dei duelli:", winners);

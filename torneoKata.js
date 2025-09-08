@@ -47,13 +47,13 @@ const training = completeObj.map((f) => {
 })
 
 // Stampa la lista dei combattenti dopo l'allenamento
-// console.log(training);
+console.log("I partecipanti sono:", training);
 
 // * Fase 3 -  🎯 Qualificazione: escludiamo dal torneo chi, dopo l'allenamento non è riuscito a raggiungere una potenza di almeno 2000.
 
 const qualifications = training.filter(f => f.power > 2000)
 
-console.log(qualifications);
+console.log("I giocatori qualificati sono:", qualifications);
 
 
 // **Fase 4 - ⚔️ Combattimento:** i combattimenti si svolgeranno tra un partecipante e il successivo dell'elenco, assicurandosi che ognuno combatta una sola volta.
@@ -94,3 +94,15 @@ for (let i = 0; i < fightersForBattle.length; i += 2) {
 
 // Stampa i vincitori dei duelli
 console.log("Vincitori dei duelli:", winners);
+
+// * Fase 5 - 🏆 Premiazione: tra tutti i vincitori degli scontri, saliranno sul podio i 3 combattenti con la potenza più alta, in ordine decrescente.
+
+// Ordina i vincitori in base alla potenza (dal più forte al meno forte)
+const podium = winners
+    .sort((a, b) => b.power - a.power) // Ordina in modo decrescente
+    .slice(0, 3); // Prendi i primi 3
+
+// Stampa il podio
+console.log("Podio:", podium);
+
+
